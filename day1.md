@@ -9,50 +9,23 @@ library(tidyverse)
 ```
 
 ``` r
-day1a_test <- 
-  "data/day1a_test.txt" |> 
-  readLines() |> 
-  as_tibble() |> 
-  separate(value, into = c("a", "b"), sep = "  ") |> 
-  mutate(across(everything(), as.numeric))
-
-sum(sort(day1a_test$b) - sort(day1a_test$a))
-```
-
-    ## [1] 11
-
-``` r
-day1a <- 
+day1 <- 
   "data/day1a.txt" |> 
   readLines() |> 
   as_tibble() |> 
   separate(value, into = c("a", "b"), sep = "  ") |> 
   mutate(across(everything(), as.numeric))
 
-sum(abs(sort(day1a$b) - sort(day1a$a)))
+sum(abs(sort(day1$b) - sort(day1$a)))
 ```
 
     ## [1] 1258579
 
 ``` r
-day1a_test |> 
+day1 |> 
   count(num = a) |> 
-  left_join(day1a_test |> count(num = b), by = "num") |> 
-  filter(!is.na(n.y)) |> 
-  summarize(similarity = sum(num * n.x * n.y))
-```
-
-    ## # A tibble: 1 × 1
-    ##   similarity
-    ##        <dbl>
-    ## 1         31
-
-``` r
-day1a |> 
-  count(num = a) |> 
-  left_join(day1a |> count(num = b), by = "num") |> 
-  filter(!is.na(n.y)) |> 
-  summarize(similarity = sum(num * n.x * n.y))
+  left_join(day1 |> count(num = b), by = "num") |> 
+  summarize(similarity = sum(num * n.x * n.y, na.rm = TRUE))
 ```
 
     ## # A tibble: 1 × 1
