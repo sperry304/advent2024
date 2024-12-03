@@ -1,16 +1,14 @@
----
-title: "Advent of Code 2024, Day 3"
-author: "Skip Perry"
-date: "December 2024"
-output: github_document
----
+Advent of Code 2024, Day 3
+================
+Skip Perry
+December 2024
 
-```{r setup, message=FALSE}
+``` r
 options(dplyr.summarize.inform = FALSE)
 library(tidyverse)
 ```
 
-```{r}
+``` r
 dat <- 
   "data/day3a.txt" |> 
   readLines()
@@ -18,7 +16,7 @@ dat <-
 #dat
 ```
 
-```{r}
+``` r
 dat |> 
   paste0(collapse = "") |> 
   str_extract_all("mul\\(\\d+\\,\\d+\\)") |> 
@@ -29,7 +27,12 @@ dat |>
   summarize(sum(a * b))
 ```
 
-```{r}
+    ## # A tibble: 1 × 1
+    ##   `sum(a * b)`
+    ##          <dbl>
+    ## 1    167090022
+
+``` r
 dat |> 
   paste0(collapse = "") |> 
   strsplit("do\\(\\)") |> 
@@ -42,3 +45,8 @@ dat |>
   mutate(across(everything(), ~ as.numeric(str_extract(.x, "\\d+")))) |> 
   summarize(sum(a * b))
 ```
+
+    ## # A tibble: 1 × 1
+    ##   `sum(a * b)`
+    ##          <dbl>
+    ## 1     89823704
