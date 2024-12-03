@@ -1,0 +1,49 @@
+---
+title: "Advent of Code 2024, Day 1"
+author: "Skip Perry"
+date: "December 2024"
+output: github_document
+---
+
+```{r setup, message=FALSE}
+options(dplyr.summarize.inform = FALSE)
+library(tidyverse)
+```
+
+```{r}
+day1a_test <- 
+  "data/day1a_test.txt" |> 
+  readLines() |> 
+  as_tibble() |> 
+  separate(value, into = c("a", "b"), sep = "  ") |> 
+  mutate(across(everything(), as.numeric))
+
+sum(sort(day1a_test$b) - sort(day1a_test$a))
+```
+
+```{r}
+day1a <- 
+  "data/day1a.txt" |> 
+  readLines() |> 
+  as_tibble() |> 
+  separate(value, into = c("a", "b"), sep = "  ") |> 
+  mutate(across(everything(), as.numeric))
+
+sum(abs(sort(day1a$b) - sort(day1a$a)))
+```
+
+```{r}
+day1a_test |> 
+  count(num = a) |> 
+  left_join(day1a_test |> count(num = b), by = "num") |> 
+  filter(!is.na(n.y)) |> 
+  summarize(similarity = sum(num * n.x * n.y))
+```
+
+```{r}
+day1a |> 
+  count(num = a) |> 
+  left_join(day1a |> count(num = b), by = "num") |> 
+  filter(!is.na(n.y)) |> 
+  summarize(similarity = sum(num * n.x * n.y))
+```
