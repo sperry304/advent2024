@@ -1,0 +1,19 @@
+---
+title: "Advent of Code 2024, Day 3"
+author: "Skip Perry"
+date: "December 2024"
+output: github_document
+---
+
+```{r setup, message=FALSE}
+options(dplyr.summarize.inform = FALSE)
+library(tidyverse)
+```
+
+```{r}
+dat <- 
+  "data/day3a_test.txt" |> 
+  readLines()
+
+dat
+```

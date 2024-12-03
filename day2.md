@@ -17,15 +17,9 @@ dat <-
 dat <- lapply(dat, as.numeric)
 
 safety_check <- function(report) {
-  l <- report
-  
-  descending <- all(l[1:(length(l) - 1)] - l[-1] > 0)
-  ascending <- all(l[1:(length(l) - 1)] - l[-1] < 0)
-  chg_3_max <- all(abs(l[1:(length(l) - 1)] - l[-1]) < 4)
-  
-  if (descending == FALSE & ascending == FALSE) { 
-    return(FALSE)
-  } else if (chg_3_max == FALSE) { 
+  r <- report[1:(length(report) - 1)] - report[-1]
+
+  if ((all(r > 0) | all(r < 0)) == FALSE | all(abs(r) < 4) == FALSE) { 
     return(FALSE)
   } else {
     return(TRUE)
@@ -33,7 +27,6 @@ safety_check <- function(report) {
 }
 
 res <- map_lgl(dat, safety_check)
-
 sum(res)
 ```
 
@@ -48,16 +41,10 @@ safety_check_pop <- function(report) {
 }
 
 safety_check2 <- function(report) {
-  l <- report
-  
-  descending <- all(l[1:(length(l) - 1)] - l[-1] > 0)
-  ascending <- all(l[1:(length(l) - 1)] - l[-1] < 0)
-  chg_3_max <- all(abs(l[1:(length(l) - 1)] - l[-1]) < 4)
-  
-  if (descending == FALSE & ascending == FALSE) { 
-    return(safety_check_pop(l))
-  } else if (chg_3_max == FALSE) { 
-    return(safety_check_pop(l))
+  r <- report[1:(length(report) - 1)] - report[-1]
+
+  if ((all(r > 0) | all(r < 0)) == FALSE | all(abs(r) < 4) == FALSE) { 
+    return(safety_check_pop(report))
   } else {
     return(TRUE)
   }
