@@ -36,15 +36,16 @@ vert_horiz_count <- function(i) {
 }
 
 pull_diag <- function(i, j, mat) {
-  paste0(c(mat[i, j], mat[i+1, j+1], mat[i+2, j+2], mat[i+3, j+3]), collapse = "")
+  txt <- paste0(c(mat[i, j], mat[i+1, j+1], mat[i+2, j+2], mat[i+3, j+3]), collapse = "")
+  if (txt %in% c("XMAS", "SAMX")) { return(1L) } else { return(0L) }
 }
 
 diag_count <- 0
 
 for (i in 1:(dim_mat-3)) {
   for (j in 1:(dim_mat-3)) {
-    if (pull_diag(i, j, mat) == "XMAS" | pull_diag(i, j, mat) == "SAMX") { diag_count <- diag_count + 1 }
-    if (pull_diag(i, j, mat_rev) == "XMAS" | pull_diag(i, j, mat_rev) == "SAMX") { diag_count <- diag_count + 1 }
+    diag_count <- 
+      diag_count + pull_diag(i, j, mat) + pull_diag(i, j, mat_rev)
   }
 }
 
