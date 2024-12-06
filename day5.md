@@ -6,8 +6,6 @@ December 2024
 ``` r
 options(dplyr.summarize.inform = FALSE)
 library(tidyverse)
-
-paste_c <- function(t) { paste0(t, collapse = "") }
 ```
 
 ``` r
@@ -54,13 +52,9 @@ order_pages <- function(i) {
 ```
 
 ``` r
-check_order <- function(i) {
-  all(order_pages(i) == updates[[i]])
-}
+check_order <- function(i) { all(order_pages(i) == updates[[i]]) }
 
-middle_index <- function(vec) {
-  vec[(length(vec) + 1) / 2]
-}
+middle_index <- function(vec) { vec[(length(vec) + 1) / 2] }
 
 correctly_ordered <- 
   map_lgl(1:length(updates), check_order)
