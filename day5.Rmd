@@ -24,10 +24,8 @@ rules <-
 updates <- 
   "data/day5b.txt" |> 
   readLines() |> 
-  strsplit(",")
-
-updates <- 
-  lapply(updates, as.numeric)
+  strsplit(",") |> 
+  lapply(as.numeric)
 ```
 
 ```{r}
@@ -59,9 +57,11 @@ check_order <- function(i) { all(order_pages(i) == updates[[i]]) }
 middle_index <- function(vec) { vec[(length(vec) + 1) / 2] }
 
 correctly_ordered <- 
-  map_lgl(1:length(updates), check_order)
+  1:length(updates) |> 
+  map_lgl(check_order)
 
-lapply(updates[correctly_ordered], middle_index) |> 
+updates[correctly_ordered] |>
+  lapply(middle_index) |> 
   unlist() |> 
   sum()
 ```
@@ -73,6 +73,7 @@ middle_index_proper_order <- function(i) {
     middle_index()
 }
 
-map_int(which(!correctly_ordered), middle_index_proper_order) |> 
+which(!correctly_ordered) |> 
+  map_int(middle_index_proper_order) |> 
   sum()
 ```
