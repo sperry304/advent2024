@@ -1,0 +1,34 @@
+---
+title: "Advent of Code 2024, Day 6"
+author: "Skip Perry"
+date: "December 2024"
+output: github_document
+---
+
+```{r setup, message=FALSE}
+options(dplyr.summarize.inform = FALSE)
+library(tidyverse)
+
+paste_c <- function(t) { paste0(t, collapse = "") }
+
+dat_to_mat <- function(dat) {
+  dat |> 
+    paste_c() |> 
+    strsplit(split = "") |> 
+    unlist() |> 
+    matrix(nrow = length(dat), byrow = TRUE)
+}
+```
+
+```{r}
+dat <- 
+  "data/day6a_test.txt" |> 
+  readLines()
+
+dat
+```
+
+```{r}
+
+```
+
