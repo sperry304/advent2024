@@ -1,11 +1,9 @@
----
-title: "Advent of Code 2024, Day 7"
-author: "Skip Perry"
-date: "December 2024"
-output: github_document
----
+Advent of Code 2024, Day 7
+================
+Skip Perry
+December 2024
 
-```{r setup, message=FALSE}
+``` r
 options(dplyr.summarize.inform = FALSE)
 library(tidyverse)
 library(glue)
@@ -13,7 +11,7 @@ library(glue)
 paste_c <- function(t) { paste0(t, collapse = "") }
 ```
 
-```{r}
+``` r
 dat <- 
   "data/day7a.txt" |> 
   readLines()
@@ -21,7 +19,7 @@ dat <-
 # dat
 ```
 
-```{r}
+``` r
 goals <- 
   dat |> 
   str_extract("\\d+") |> 
@@ -34,7 +32,7 @@ nums <-
   lapply(as.double)
 ```
 
-```{r}
+``` r
 day7 <- function(iter) {
   #if (iter %% 10 == 0) { print(iter) }
 
@@ -67,3 +65,5 @@ results <- map_lgl(1:length(goals), day7)
 
 format(sum(goals[results]), scientific = FALSE)
 ```
+
+    ## [1] "3066086663535"
