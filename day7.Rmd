@@ -56,7 +56,7 @@ while (sum(m == "^") > 0) {
 sum(m == "X")
 ```
 
-```{r, eval=FALSE}
+```{r}
 dat <- 
   "data/day6a.txt" |> 
   readLines()
@@ -64,7 +64,7 @@ dat <-
 #dat
 ```
 
-```{r, eval=FALSE}
+```{r}
 mat <- 
   dat |> 
   dat_to_mat()
@@ -72,7 +72,7 @@ mat <-
 #mat
 ```
 
-```{r, eval=FALSE}
+```{r}
 num_obstructions <- 0
 starting_pos <- which(mat == "^", arr.ind = TRUE)
 visited <- which(m == "X", arr.ind = TRUE)

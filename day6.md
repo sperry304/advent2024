@@ -1,11 +1,9 @@
----
-title: "Advent of Code 2024, Day 6"
-author: "Skip Perry"
-date: "December 2024"
-output: github_document
----
+Advent of Code 2024, Day 6
+================
+Skip Perry
+December 2024
 
-```{r setup, message=FALSE}
+``` r
 options(dplyr.summarize.inform = FALSE)
 library(tidyverse)
 
@@ -20,7 +18,7 @@ dat_to_mat <- function(dat) {
 }
 ```
 
-```{r}
+``` r
 dat <- 
   "data/day6a.txt" |> 
   readLines()
@@ -28,13 +26,13 @@ dat <-
 #dat
 ```
 
-```{r}
+``` r
 mat <- 
   dat |> 
   dat_to_mat()
 ```
 
-```{r}
+``` r
 check_next <- function(row, col, m) {
   if (row == 1) { return("done") }
   if (m[row-1, col] == "#") { return("blocked") }
@@ -42,7 +40,7 @@ check_next <- function(row, col, m) {
 }
 ```
 
-```{r}
+``` r
 m <- mat
 
 while (sum(m == "^") > 0) {
@@ -56,7 +54,9 @@ while (sum(m == "^") > 0) {
 sum(m == "X")
 ```
 
-```{r, eval=FALSE}
+    ## [1] 4982
+
+``` r
 dat <- 
   "data/day6a.txt" |> 
   readLines()
@@ -64,7 +64,7 @@ dat <-
 #dat
 ```
 
-```{r, eval=FALSE}
+``` r
 mat <- 
   dat |> 
   dat_to_mat()
@@ -72,7 +72,7 @@ mat <-
 #mat
 ```
 
-```{r, eval=FALSE}
+``` r
 num_obstructions <- 0
 starting_pos <- which(mat == "^", arr.ind = TRUE)
 visited <- which(m == "X", arr.ind = TRUE)
@@ -103,4 +103,3 @@ for (v in 1:nrow(visited)) {
 num_obstructions
 v
 ```
-
